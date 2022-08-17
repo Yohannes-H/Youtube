@@ -19,12 +19,13 @@ import SettingsBrightnessIcon from "@mui/icons-material/SettingsBrightness";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 const Container = styled.div`
   flex: 1;
-  background-color: #202020;
+  background-color: ${({ theme }) => theme.bgLighter};
   height: 100vh;
-  color: white;
+  color: ${({ theme }) => theme.text};
   font-size: 14px;
   position: sticky;
   top: 0;
+  overflow: scroll;
 `;
 
 const Wrapper = styled.div`
@@ -51,7 +52,7 @@ const Item = styled.div`
 
 const Hr = styled.hr`
   margin: 15px 0px;
-  border: 0.5px solid #373737;
+  border: 0.5px solid ${({ theme }) => theme.soft};
 `;
 const Login = styled.div``;
 const Button = styled.button`
@@ -67,9 +68,15 @@ const Button = styled.button`
   align-items: center;
   gap: 5px;
 `;
-function Menu() {
+const Title = styled.h2`
+  font-size: 14px;
+  font-weight: 500;
+  color: #aaaaaa;
+  margin-bottom: 20px;
+`;
+function Menu({ darkMode, setDarkMode }) {
   return (
-    <Container>
+    <Container className="container">
       <Wrapper>
         <Logo>
           <Img src={YouTube} />
@@ -107,7 +114,7 @@ function Menu() {
           </Button>
         </Login>
         <Hr />
-
+        <Title>Best of YouTube</Title>
         <Item>
           <LibraryMusicIcon />
           Music
@@ -145,7 +152,12 @@ function Menu() {
           <HelpIcon />
           Help
         </Item>
-        <Item>
+        <Item
+          onClick={() => {
+            setDarkMode((prev) => !prev);
+            // setDarkMode(!darkMode);
+          }}
+        >
           <SettingsBrightnessIcon />
           Light Mode
         </Item>
