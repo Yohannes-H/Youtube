@@ -27,10 +27,12 @@ const Container = styled.div`
   position: sticky;
   top: 0;
   overflow: scroll;
+  width: max-content; /** to be checked */
 `;
 
 const Wrapper = styled.div`
   padding: 18px 26px;
+  width: max-content; /** to be checked */
 `;
 const Logo = styled.div`
   display: flex;
@@ -49,6 +51,9 @@ const Item = styled.div`
   gap: 20px;
   cursor: pointer;
   padding: 7.5px 0px;
+  &:hover {
+    background-color: ${({ theme }) => theme.soft};
+  }
 `;
 
 const Hr = styled.hr`
