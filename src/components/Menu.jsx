@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import { Link } from "react-router-dom";
 import YouTube from "../img/yt-logo.png";
 import HomeIcon from "@mui/icons-material/Home";
 import ExploreIcon from "@mui/icons-material/Explore";
@@ -78,10 +79,12 @@ function Menu({ darkMode, setDarkMode }) {
   return (
     <Container className="container">
       <Wrapper>
-        <Logo>
-          <Img src={YouTube} />
-          YouTube
-        </Logo>
+        <Link to={"/"} style={{ textDecoration: "none", color: "inherit" }}>
+          <Logo>
+            <Img src={YouTube} />
+            YouTube
+          </Logo>
+        </Link>
         <Item>
           <HomeIcon />
           Home
@@ -159,7 +162,7 @@ function Menu({ darkMode, setDarkMode }) {
           }}
         >
           <SettingsBrightnessIcon />
-          Light Mode
+          {darkMode ? "Light" : "Dark"} Mode
         </Item>
       </Wrapper>
     </Container>
