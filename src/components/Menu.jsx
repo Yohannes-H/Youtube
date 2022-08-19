@@ -27,12 +27,10 @@ const Container = styled.div`
   position: sticky;
   top: 0;
   overflow: scroll;
-  width: max-content; /** to be checked */
 `;
 
 const Wrapper = styled.div`
   padding: 18px 26px;
-  width: max-content; /** to be checked */
 `;
 const Logo = styled.div`
   display: flex;
@@ -116,10 +114,12 @@ function Menu({ darkMode, setDarkMode }) {
 
         <Login>
           Sign in to like videos, comment, and subscribe.
-          <Button>
-            <AccountCircleIcon />
-            SIGN IN
-          </Button>
+          <Link to="signin" style={{ textDecoration: "none" }}>
+            <Button>
+              <AccountCircleIcon />
+              SIGN IN
+            </Button>
+          </Link>
         </Login>
         <Hr />
         <Title>Best of YouTube</Title>
