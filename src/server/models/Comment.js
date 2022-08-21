@@ -18,5 +18,5 @@ const CommentSchema = new mongoose.Schema(
   { timestamps: true }
 );
 
-//Comment collection will be changed to "Comments" by default by mongoDB
+//Comment collection will be changed to "comment" by default by mongoDB
 export default mongoose.model("Comment", CommentSchema);

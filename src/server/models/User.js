@@ -30,5 +30,5 @@ const UserSchema = new mongoose.Schema(
   { timestamps: true }
 );
 
-//User collection will be changed to "users" by default by mongoDB
+//User collection will be changed to "user" by default by mongoDB
 export default mongoose.model("User", UserSchema);

@@ -43,5 +43,5 @@ const VideoSchema = new mongoose.Schema(
   { timestamps: true }
 );
 
-//Video collection will be changed to "Videos" by default by mongoDB
+//Video collection will be changed to "video" by default by mongoDB
 export default mongoose.model("Video", VideoSchema);
