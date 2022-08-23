@@ -2,6 +2,8 @@ import React from "react";
 import styled from "styled-components";
 import Thumb from "../img/thumb.jpg";
 import { Link } from "react-router-dom";
+import { format } from "timeago.js";
+import axios from "axios";
 const Container = styled.div`
   width: ${(props) => props.type !== "sm" && "320px"};
   margin-bottom: ${(props) => (props.type === "sm" ? "10px" : "45px")};
@@ -48,20 +50,28 @@ const Info = styled.div`
   color: ${({ theme }) => theme.textSoft};
 `;
 
-function Card({ type }) {
+function Card({ type, video }) {
+  const [channel, setChannel] = React.useState({});
+  React.useEffect(() => {
+    const fetchChannel = async () => {
+      const res = await axios.get(`/users/find/${video.userId}`);
+      setChannel(res.data);
+    };
+    fetchChannel();
+  }, [video.userId]);
+
   return (
     <Link to={"/video/test"} style={{ textDecoration: "none" }}>
       <Container type={type}>
-        <Image type={type} src={Thumb} />
+        <Image type={type} src={video.imgUrl} />
         <Details type={type}>
-          <ChannelImage
-            type={type}
-            src="https://www.therconline.com/wp-content/uploads/2022/05/Does-Facebook-have-the-%E2%80%98New-Profile-Pic-feature-as-app-goes-viral-1.png"
-          />
+          <ChannelImage type={type} src={channel.img} />
           <Texts>
-            <Title>Text Video</Title>
-            <ChannelName>YouTube Coding</ChannelName>
-            <Info>123,453 views . 1 day ago</Info>
+            <Title>{video.title}</Title>
+            <ChannelName>{channel.name}</ChannelName>
+            <Info>
+              {video.views} views . {format(video.createdAt)}
+            </Info>
           </Texts>
         </Details>
       </Container>

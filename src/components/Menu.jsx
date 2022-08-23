@@ -18,6 +18,7 @@ import FlagIcon from "@mui/icons-material/Flag";
 import HelpIcon from "@mui/icons-material/Help";
 import SettingsBrightnessIcon from "@mui/icons-material/SettingsBrightness";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
+import { useSelector } from "react-redux";
 const Container = styled.div`
   flex: 1;
   background-color: ${({ theme }) => theme.bgLighter};
@@ -79,6 +80,7 @@ const Title = styled.h2`
   margin-bottom: 20px;
 `;
 function Menu({ darkMode, setDarkMode }) {
+  const { currentUser } = useSelector((state) => state.user);
   return (
     <Container className="container">
       <Wrapper>
@@ -118,17 +120,20 @@ function Menu({ darkMode, setDarkMode }) {
         </Item>
 
         <Hr />
-
-        <Login>
-          Sign in to like videos, comment, and subscribe.
-          <Link to="signin" style={{ textDecoration: "none" }}>
-            <Button>
-              <AccountCircleIcon />
-              SIGN IN
-            </Button>
-          </Link>
-        </Login>
-        <Hr />
+        {!currentUser && (
+          <>
+            <Login>
+              Sign in to like videos, comment, and subscribe.
+              <Link to="signin" style={{ textDecoration: "none" }}>
+                <Button>
+                  <AccountCircleIcon />
+                  SIGN IN
+                </Button>
+              </Link>
+            </Login>
+            <Hr />
+          </>
+        )}
         <Title>Best of YouTube</Title>
         <Item>
           <LibraryMusicIcon />
